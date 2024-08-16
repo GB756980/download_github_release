@@ -1,0 +1,50 @@
+{
+    "projects": [
+        {
+            "owner": "2dust",
+            "name": "v2rayN",
+            "version": "6.55",
+            "save_path": "D:\\加速",
+            "files": [
+                "v2rayN.zip"
+            ]
+        },
+        {
+            "owner": "6yy66yy",
+            "name": "legod-auto-pause",
+            "version": "v2.2.1",
+            "save_path": "D:\\加速\\雷神加速器\\自动暂停",
+            "files": []
+        },
+        {
+            "owner": "SnxiaLianXin",
+            "name": "LOLAutomationTools",
+            "version": "v2.5.10.3",
+            "save_path": "D:\\Game\\GameTools\\LOL\\LOLAutomationTools",
+            "files": []
+        },
+        {
+            "owner": "cangzhang",
+            "name": "champ-r",
+            "version": "v2.0.2-b7",
+            "save_path": "D:\\Game\\GameTools\\LOL\\ChampR\\V2",
+            "files": []
+        },
+        {
+            "owner": "H4rry217",
+            "name": "AimRobotLite",
+            "version": "V2.0.7",
+            "save_path": "D:\\Game\\GameTools\\BFV\\ARL",
+            "files": []
+        },
+        {
+            "owner": "sch-lda",
+            "name": "yctest2",
+            "version": "CI",
+            "save_path": "D:\\Game\\GameTools\\GTAV\\线上小助手",
+            "files": [
+                "GTA5OnlineTools.exe"
+            ]
+        }
+    ]
+}

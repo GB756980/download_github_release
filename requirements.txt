@@ -1,0 +1,7 @@
+py7zr
+zipfile36
+tqdm
+urllib3
+logging
+requests
+pyinstaller
