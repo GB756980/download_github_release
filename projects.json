@@ -1,9 +1,9 @@
 {
     "projects": [
-	    {
+        {
             "owner": "GB756980",
             "name": "download_github_file",
-            "version": "v1",
+            "version": "v1.0",
             "save_path": "E:\\mycode\\Bat\\download_github_file",
             "files": []
         },
@@ -19,14 +19,14 @@
         {
             "owner": "6yy66yy",
             "name": "legod-auto-pause",
-            "version": "v2.2.1",
+            "version": "v2.2.3_fix",
             "save_path": "D:\\加速\\雷神加速器\\自动暂停",
             "files": []
         },
         {
             "owner": "SnxiaLianXin",
             "name": "LOLAutomationTools",
-            "version": "v2.5.10.3",
+            "version": "v2.5.10.4",
             "save_path": "D:\\Game\\GameTools\\LOL\\LOLAutomationTools",
             "files": []
         },
