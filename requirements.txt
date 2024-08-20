@@ -1,7 +1,5 @@
-py7zr
-zipfile36
 tqdm
+py7zr
 urllib3
-logging
 requests
 pyinstaller

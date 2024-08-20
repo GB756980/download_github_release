@@ -1,9 +1,10 @@
 {
+    "github_token": "",
     "projects": [
         {
             "owner": "GB756980",
             "name": "download_github_file",
-            "version": "v1.0",
+            "version": "v1.1",
             "save_path": "E:\\mycode\\Bat\\download_github_file",
             "files": []
         },
