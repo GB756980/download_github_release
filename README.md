@@ -1,12 +1,18 @@
-项目有两个文件，分别是project.json和download_github_release.py。
+项目有两个文件，分别是 config.json 和 download_github_release.py
 
-project.json包括项目的所有者、仓库名称、版本信息、保存到本机的地址、需要下载的文件（可设置多个。
+config.json 包括多种信息，目前有 github_token 和 projects 。
 
-json中可收录多个项目的信息，点击即可更新多个项目。
+github_token 用于下载文件时，避免访问 GitHub API 时达到请求限制。
 
-更新时，将json文件中的版本信息与api.github中的最新版进行比较，若有更新的版本，就会下载最新的release，并同步更新project.json的version。
+projects包括多个项目，项目信息有：仓库所有者、仓库名称、版本信息、保存到本机的地址、需要下载的文件（可设置多个文件）
 
-如果版本号为CI，则下载最新工件的全部文件。如果版本号为CI，且不生成工件，则下载最新release的指定文件，且跳过版本检测、不更新version。
+点击 download_github_release.py 即可更新多个项目。
+
+更新时，将 config.json 中的版本信息与 api.github 中的最新版进行比较。
+
+若有更新的版本，就会下载最新的release，并同步更新project.json的version。
+
+如果版本号为CI，则下载最新release的指定文件，且跳过版本检测、不更新version。如果没有release，则下载最新工件的全部文件。
 
 
 project.json格式如下：
@@ -42,8 +48,6 @@ project.json格式如下：
 }
 ```
 
-不指定需要下载的文件名称："files": []。
+不指定需要下载的文件名称，即下载全部文件："files": []。
 
 指定需要下载的文件名称："files": ["A","B"]。
-
-如果版本号是CI，且不生成工件，则必须指定文件名："files": ["GTA5OnlineTools.exe"]。

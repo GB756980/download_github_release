@@ -15,15 +15,18 @@ PROJECTS_JSON_FILE = "config.json"
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # 设置日志文件和格式
-log_file = "download_log.txt"  # 日志文件名
+log_file = "download.log"  # 日志文件名
 logging.basicConfig(
     level=logging.INFO,  # 设置日志记录级别为 INFO
-    format='%(message)s',  # 只记录消息，不包含时间和级别
-    filename=log_file  # 日志文件名
+    format='%(asctime)s - %(levelname)s - %(message)s',  # 包含时间、日志级别和消息
+    filename=log_file,  # 日志文件名
+    datefmt='%Y-%m-%d %H:%M:%S'  # 设置时间格式
 )
 # 控制台输出日志
 console_handler = logging.StreamHandler(sys.stdout)  # 创建一个日志处理器，用于输出到控制台
 console_handler.setLevel(logging.INFO)  # 设置控制台日志记录级别为 INFO
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')  # 设置控制台输出日志格式
+console_handler.setFormatter(formatter)  # 为控制台处理器设置格式
 logging.getLogger().addHandler(console_handler)  # 将控制台日志处理器添加到根记录器
 
 def download_file(url, save_path, file_name, token=None):
@@ -234,6 +237,29 @@ def download_artifact_files(owner, repo, save_path, files=None, token=None):
         logging.info(f"{'=' * 50}")  # 分隔线
     return False, "CI"  # 返回处理失败和 "CI"
 
+def update_version(owner, repo, new_version):
+    logging.info(f"更新项目 {owner}/{repo} 的版本号到 {new_version}")  # 记录更新版本号的日志
+    try:
+        with open(PROJECTS_JSON_FILE, 'r', encoding='utf-8') as f:  # 以只读模式打开配置文件
+            projects = json.load(f)  # 解析 JSON 数据
+
+        updated = False  # 标记是否更新了版本号
+        for project in projects.get('projects', []):  # 遍历项目列表
+            if project.get('owner') == owner and project.get('name') == repo:  # 找到需要更新的项目
+                project['version'] = new_version  # 更新版本号
+                updated = True  # 设置标记为 True
+                break
+
+        if updated:  # 如果成功更新版本号
+            with open(PROJECTS_JSON_FILE, 'w', encoding='utf-8') as f:  # 以写入模式打开配置文件
+                json.dump(projects, f, indent=4, ensure_ascii=False)  # 将更新后的 JSON 数据写入文件
+            logging.info(f"成功更新 {owner}/{repo} 的版本号到 {new_version}")  # 记录更新成功的日志
+        else:
+            logging.warning(f"未找到需要更新版本的项目 {owner}/{repo}")  # 记录未找到项目的警告信息
+
+    except Exception as e:
+        logging.error(f"更新版本失败: {e}")  # 记录更新版本失败的日志
+
 def update_projects():
     logging.info(f"{'=' * 50}")  # 分隔线
     logging.info(f"读取配置文件: {PROJECTS_JSON_FILE}")  # 记录读取配置文件的日志
@@ -262,29 +288,6 @@ def update_projects():
         success, latest_version = download_release_files(owner, repo, version, save_path, file_list, token)  # 下载和处理发布文件
         if success and version == "CI":  # 如果处理成功且版本为 "CI"
             continue
-
-def update_version(owner, repo, new_version):
-    logging.info(f"更新项目 {owner}/{repo} 的版本号到 {new_version}")  # 记录更新版本号的日志
-    try:
-        with open(PROJECTS_JSON_FILE, 'r', encoding='utf-8') as f:  # 以只读模式打开配置文件
-            projects = json.load(f)  # 解析 JSON 数据
-
-        updated = False  # 标记是否更新了版本号
-        for project in projects.get('projects', []):  # 遍历项目列表
-            if project.get('owner') == owner and project.get('name') == repo:  # 找到需要更新的项目
-                project['version'] = new_version  # 更新版本号
-                updated = True  # 设置标记为 True
-                break
-
-        if updated:  # 如果成功更新版本号
-            with open(PROJECTS_JSON_FILE, 'w', encoding='utf-8') as f:  # 以写入模式打开配置文件
-                json.dump(projects, f, indent=4, ensure_ascii=False)  # 将更新后的 JSON 数据写入文件
-            logging.info(f"成功更新 {owner}/{repo} 的版本号到 {new_version}")  # 记录更新成功的日志
-        else:
-            logging.warning(f"未找到需要更新版本的项目 {owner}/{repo}")  # 记录未找到项目的警告信息
-
-    except Exception as e:
-        logging.error(f"更新版本失败: {e}")  # 记录更新版本失败的日志
 
 if __name__ == "__main__":
     update_projects()  # 调用更新项目函数
