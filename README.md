@@ -4,7 +4,7 @@
 本项目以后将不再更新，因为功能已合并至：
 - [download_form_github（从 Github 更新 Release 或下载文件）](https://github.com/GB756980/download_form_github)
 
-##项目说明
+## 项目说明
 
 项目有两个文件，分别是 config.json 和 download_github_release.py
 
