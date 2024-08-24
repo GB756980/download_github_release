@@ -2,13 +2,6 @@
     "github_token": "",
     "projects": [
         {
-            "owner": "GB756980",
-            "name": "download_github_file",
-            "version": "v1.1",
-            "save_path": "E:\\mycode\\Bat\\download_github_file",
-            "files": []
-        },
-        {
             "owner": "2dust",
             "name": "v2rayN",
             "version": "6.55",
