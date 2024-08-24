@@ -15,7 +15,7 @@ PROJECTS_JSON_FILE = "config.json"
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # 设置日志文件和格式
-log_file = "download.log"  # 日志文件名
+log_file = "download_log.txt"  # 日志文件名
 logging.basicConfig(
     level=logging.INFO,  # 设置日志记录级别为 INFO
     format='%(asctime)s - %(levelname)s - %(message)s',  # 包含时间、日志级别和消息
