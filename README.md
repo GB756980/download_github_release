@@ -10,14 +10,15 @@ projects包括多个项目，项目信息有：仓库所有者、仓库名称、
 
 更新时，将 config.json 中的版本信息与 api.github 中的最新版进行比较。
 
-若有更新的版本，就会下载最新的release，并同步更新project.json的version。
+若有更新的版本，就会下载最新的release，并同步更新config.json的version。
 
 如果版本号为CI，则下载最新release的指定文件，且跳过版本检测、不更新version。如果没有release，则下载最新工件的全部文件。
 
 
-project.json格式如下：
+config.json 格式如下：
 ```
 {
+    "github_token": "",
     "projects": [
         {
             "owner": "2dust",
